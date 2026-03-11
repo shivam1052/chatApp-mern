@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 3001;
 connectDB();
 
 const app = express();
+app.use(express.json());
 
 app.use("/api/auth", authRoute);
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
