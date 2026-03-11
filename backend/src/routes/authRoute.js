@@ -1,5 +1,10 @@
 import express from "express";
-import { login, logout, signup } from "../controllers/authController.js";
+import {
+  login,
+  logout,
+  signup,
+  updateProfile,
+} from "../controllers/authController.js";
 
 const route = express.Router();
 
@@ -11,5 +16,8 @@ route.post("/login", login);
 
 //Logout route
 route.get("/logout", logout);
+
+//Update-profile route
+route.post("/update-profile", updateProfile);
 
 export default route;

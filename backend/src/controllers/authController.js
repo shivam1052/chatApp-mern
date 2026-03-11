@@ -66,6 +66,21 @@ export const login = async (req, res) => {
   }
 };
 
+//Logout controller
 export const logout = (req, res) => {
-  res.send("Logout page");
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "Logged out successfully!" });
+  } catch (error) {
+    console.log("Logout failed", error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const updateProfile = (req, res) => {
+  try {
+  } catch (error) {
+    console.log("Profile update failed", error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
