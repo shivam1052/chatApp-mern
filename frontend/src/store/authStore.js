@@ -15,4 +15,15 @@ export const authStore = create((set) => ({
       set({ loggedUser: null });
     }
   },
+
+  login: async (data) => {
+    try {
+      const res = await axiosInstance.post("/auth/login", data);
+      set({ loggedUser: res.data });
+      toast.success("Login successful");
+    } catch (error) {
+      toast.error("Login failed please try again.");
+      set({ loggedUser: null });
+    }
+  },
 }));

@@ -1,9 +1,29 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
+import { authStore } from "../store/authStore";
 
 const SignUpPage = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const { signup } = authStore();
+
+  const validateCredentials = () => {
+    if (!username.trim()) return toast.error("Username is required!");
+    if (!email.trim()) return toast.error("Email is required!");
+    if (!/\S+@\S+\.\S+/.test(email)) return toast.error("Invalid email format");
+    if (!password) return toast.error("Password is required!");
+    if (password.length < 5)
+      return toast.error("Password length must be ateast 5 characters");
+    return true;
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (validateCredentials) return signup({ username, email, password });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="rounded-2xl shadow-2xl p-8 w-full max-w-md bg-zinc-800 relative overflow-hidden">
@@ -11,7 +31,7 @@ const SignUpPage = () => {
           <h2 className="text-3xl font-bold text-center text-white mb-6 drop-shadow-lg">
             Sign Up
           </h2>
-          <form className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block text-gray-200 mb-1" htmlFor="username">
                 Username
