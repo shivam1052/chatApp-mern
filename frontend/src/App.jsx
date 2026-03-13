@@ -8,7 +8,7 @@ import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
-    <div>
+    <div className="min-h-screen bg-[#37353E] text-white">
       <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
