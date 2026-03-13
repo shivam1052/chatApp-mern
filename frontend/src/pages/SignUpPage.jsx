@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SignUpPage = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="rounded-2xl shadow-2xl p-8 w-full max-w-md bg-zinc-800 relative overflow-hidden">
@@ -19,6 +22,8 @@ const SignUpPage = () => {
                 className="w-full px-4 py-2 border border-gray-400 bg-gray-700 text-white
                  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                 placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
                 autoComplete="off"
               />
@@ -33,6 +38,8 @@ const SignUpPage = () => {
                 className="w-full px-4 py-2 border border-gray-400 bg-gray-700 text-white 
                 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                 placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
                 autoComplete="off"
               />
@@ -48,12 +55,14 @@ const SignUpPage = () => {
                  rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition"
                 placeholder="Enter your password"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 autoComplete="off"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white 
+              className="w-full py-2 bg-linear-to-r from-blue-500 to-purple-500 text-white 
               font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition 
               transform hover:scale-105"
             >
@@ -61,9 +70,9 @@ const SignUpPage = () => {
             </button>
           </form>
           <div className="flex items-center my-4">
-            <div className="flex-grow h-px bg-gray-400 opacity-30"></div>
+            <div className="grow h-px bg-gray-400 opacity-30"></div>
             <span className="mx-2 text-gray-300 text-xs">or</span>
-            <div className="flex-grow h-px bg-gray-400 opacity-30"></div>
+            <div className="grow h-px bg-gray-400 opacity-30"></div>
           </div>
           <p className="mt-6 text-center text-gray-300">
             Already have an account?{" "}

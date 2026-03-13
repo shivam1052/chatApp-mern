@@ -5,7 +5,7 @@ import { FaSignOutAlt } from "react-icons/fa";
 
 function Navbar() {
   return (
-    <nav className="bg-gradient-to-r from-blue-950 to-purple-950 px-5 py-1 flex items-center justify-between shadow-lg lg:px-6">
+    <nav className="bg-linear-to-r from-blue-950 to-purple-950 px-5 py-1 flex items-center justify-between shadow-lg lg:px-6">
       <div className="flex items-center gap-3">
         <Link
           to="/"
