@@ -8,7 +8,7 @@ import {
 
 const route = express.Router();
 
-route.post("/users", checkAuth, contactsForSidebar);
+route.get("/users", checkAuth, contactsForSidebar);
 route.get("/getmessages/:_id", checkAuth, getMessages);
 route.post("/sendmessage/:_id", checkAuth, sendMessage);
 

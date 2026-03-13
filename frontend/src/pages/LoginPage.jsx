@@ -31,7 +31,7 @@ const LoginPage = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                autoComplete="email"
+                autoComplete="off"
               />
             </div>
             <div>
@@ -46,20 +46,20 @@ const LoginPage = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                autoComplete="current-password"
+                autoComplete="off"
               />
             </div>
             <button
               type="submit"
-              className="w-full py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition transform hover:scale-105"
+              className="w-full py-2 bg-linear-to-r from-blue-500 to-purple-500 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-purple-600 transition transform hover:scale-105"
             >
               Login
             </button>
           </form>
           <div className="flex items-center my-4">
-            <div className="flex-grow h-px bg-gray-400 opacity-30"></div>
+            <div className="grow h-px bg-gray-400 opacity-30"></div>
             <span className="mx-2 text-gray-300 text-xs">or</span>
-            <div className="flex-grow h-px bg-gray-400 opacity-30"></div>
+            <div className="grow h-px bg-gray-400 opacity-30"></div>
           </div>
           <p className="mt-6 text-center text-gray-300">
             Don't have an account?{" "}
