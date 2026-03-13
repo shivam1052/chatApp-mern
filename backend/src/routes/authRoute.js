@@ -5,6 +5,7 @@ import {
   signup,
   updateProfile,
 } from "../controllers/authController.js";
+import { checkAuth } from "../middlewares/authMiddleware.js";
 
 const route = express.Router();
 
@@ -18,6 +19,6 @@ route.post("/login", login);
 route.get("/logout", logout);
 
 //Update-profile route
-route.post("/update-profile", updateProfile);
+route.post("/update-profile", checkAuth, updateProfile);
 
 export default route;
