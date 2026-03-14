@@ -3,7 +3,7 @@ import Message from "../model/messageModel.js";
 
 export const contactsForSidebar = async (req, res) => {
   try {
-    const loggedUserId = req.User._id;
+    const loggedUserId = req.user._id;
     const users = await User.find({ _id: { $ne: loggedUserId } }).select(
       "-password",
     );
@@ -17,13 +17,13 @@ export const contactsForSidebar = async (req, res) => {
 
 export const getMessages = async (req, res) => {
   const receiverId = req.params._id;
-  const senderID = req.User._id;
+  const senderId = req.user._id;
 
   try {
-    const messages = Message.find({
+    const messages = await Message.find({
       $or: [
-        { senderId: senderID, receiverId: receiverId },
-        { senderId: receiverId, receiverId: receiverId },
+        { senderId: senderId, receiverId: receiverId },
+        { senderId: receiverId, receiverId: senderId },
       ],
     });
     res.status(200).json(messages);
@@ -36,7 +36,7 @@ export const getMessages = async (req, res) => {
 export const sendMessage = async (req, res) => {
   try {
     const { text } = req.body;
-    const senderID = req.User._id;
+    const senderId = req.user._id;
     const receiverId = req.params._id;
 
     const newMessage = new Message({

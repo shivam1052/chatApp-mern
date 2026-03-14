@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast";
 
 export const authStore = create((set) => ({
   loggedUser: null,
+  onlineUser: [],
 
   signup: async (data) => {
     try {
