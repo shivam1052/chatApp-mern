@@ -7,7 +7,6 @@ import authRoute from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import messageRoute from "./routes/messageRoute.js";
 import { app, server } from "./lib/socket.js";
-import path from "path";
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
