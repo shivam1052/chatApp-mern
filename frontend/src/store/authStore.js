@@ -13,7 +13,9 @@ export const authStore = create(
 
       signup: async (data) => {
         try {
-          const res = await axiosInstance.post("/auth/signup", data);
+          const res = await axiosInstance.post("/auth/signup", data, {
+            withCredentials: true,
+          });
 
           set({ loggedUser: res.data });
 
@@ -27,7 +29,9 @@ export const authStore = create(
 
       login: async (data) => {
         try {
-          const res = await axiosInstance.post("/auth/login", data);
+          const res = await axiosInstance.post("/auth/login", data, {
+            withCredentials: true,
+          });
 
           set({ loggedUser: res.data });
 
