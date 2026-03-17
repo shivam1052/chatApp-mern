@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
     },
     profilepic: {
       type: String,
-      default: "https://api.dicebear.com/9.x/avataaars/svg?seed=default",
+      default: "",
     },
   },
   { timestamps: true },

@@ -19,17 +19,22 @@ export const signup = async (req, res) => {
     if (user) return res.status(400).json({ message: "User already exists!" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    const avatar = `https://api.dicebear.com/9.x/initials/svg?seed=${username}`;
 
     const newUser = new User({
       username,
       email,
       password: hashedPassword,
+      profilepic: avatar,
     });
     await newUser.save();
 
     if (newUser) {
       createToken(newUser._id, res);
-      res.status(201).json({ message: "User created successfully!", newUser });
+      res.status(201).json({
+        message: "User created successfully!",
+        newUser,
+      });
     }
   } catch (error) {
     console.log("Signup failed!", error.message);

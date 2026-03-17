@@ -1,5 +1,6 @@
 import User from "../model/userModel.js";
 import Message from "../model/messageModel.js";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 
 export const contactsForSidebar = async (req, res) => {
   try {
@@ -45,6 +46,11 @@ export const sendMessage = async (req, res) => {
       text,
     });
     await newMessage.save();
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    if (receiverSocketId) {
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
+
     if (newMessage) res.status(201).json(newMessage);
   } catch (error) {
     console.log("Error in sendMessage controller", error.message);

@@ -21,7 +21,7 @@ const SignUpPage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateCredentials) return signup({ username, email, password });
+    if (validateCredentials()) return signup({ username, email, password });
   };
 
   return (

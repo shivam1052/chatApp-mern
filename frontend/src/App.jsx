@@ -6,9 +6,17 @@ import LoginPage from "./pages/LoginPage";
 import ProfilePage from "./pages/ProfilePage";
 import { Toaster } from "react-hot-toast";
 import { authStore } from "./store/authStore.js";
+import { useEffect } from "react";
 
 function App() {
-  const { loggedUser } = authStore();
+  const { loggedUser, connectSocket } = authStore();
+
+  useEffect(() => {
+    if (loggedUser?._id) {
+      connectSocket();
+    }
+  }, [loggedUser]);
+
   return (
     <div className="min-h-screen bg-[#37353E] text-white">
       <Navbar />

@@ -1,10 +1,11 @@
 import { FaUserCircle } from "react-icons/fa";
 import { chatStore } from "../store/chatStore.js";
 import { useEffect } from "react";
+import { authStore } from "../store/authStore.js";
 
 const Sidebar = () => {
-  const { users, getUsers, setSelectedUser, onlineUser } = chatStore();
-
+  const { users, getUsers, setSelectedUser } = chatStore();
+  const { onlineUsers } = authStore();
   useEffect(() => {
     getUsers();
   }, [getUsers]);
@@ -36,14 +37,17 @@ const Sidebar = () => {
                 alt="profile"
                 className="size-12 object-cover rounded-full group-hover:border-primary/60 transition-all"
               />
-
-              <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full shadow"></span>
+              {onlineUsers.includes(user._id) && (
+                <span className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-white rounded-full shadow"></span>
+              )}
             </div>
             <div className="hidden lg:flex flex-col items-start flex-1 min-w-0">
               <span className="font-medium text-base-content truncate">
                 {user.username}
               </span>
-              <span className="text-xs text-base-content/60 truncate"></span>
+              <span className="text-xs text-base-content/60 truncate">
+                {onlineUsers.includes(user._id) ? "Online" : "Offline"}
+              </span>
             </div>
           </button>
         ))}
