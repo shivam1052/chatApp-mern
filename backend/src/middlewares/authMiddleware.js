@@ -6,17 +6,17 @@ export const checkAuth = async (req, res, next) => {
     const token = req.cookies.jwt;
 
     if (!token) {
-      res.status(400).json({ message: "Token is required!" });
+      return res.status(400).json({ message: "Token is required!" });
     }
 
     const decode = jwt.verify(token, process.env.JWT_TOKEN);
 
     if (!decode) {
-      res.status(401).json({ message: "Unauthorised or invalid token" });
+      return res.status(401).json({ message: "Unauthorised or invalid token" });
     }
     const user = await User.findById(decode.userId).select("-password");
     if (!user) {
-      res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "User not found" });
     }
     req.user = user;
     next();
