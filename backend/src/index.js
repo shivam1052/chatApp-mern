@@ -7,6 +7,7 @@ import authRoute from "./routes/authRoute.js";
 import cookieParser from "cookie-parser";
 import messageRoute from "./routes/messageRoute.js";
 import { app, server } from "./lib/socket.js";
+import path from "path";
 
 dns.setServers(["1.1.1.1", "8.8.8.8"]);
 
@@ -26,5 +27,16 @@ app.use(
 
 app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
+
+//code for deployment
+if (process.env.NODE_ENV === "production") {
+  const dirPath = path.resolve();
+
+  app.use(express.static(path.join(dirPath, "frontend", "dist")));
+
+  app.use((req, res) => {
+    res.sendFile(path.join(dirPath, "frontend", "dist", "index.html"));
+  });
+}
 
 server.listen(PORT, () => console.log(`Server running on port ${PORT}`));
