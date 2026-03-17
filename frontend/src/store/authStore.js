@@ -62,7 +62,7 @@ export const authStore = create(
           console.log("Socket already exists");
           return;
         }
-        const newSocket = io("http://localhost:3000", {
+        const newSocket = io("https://chatapp-mern-backend-xf7q.onrender.com", {
           query: { userId: loggedUser._id },
         });
 
