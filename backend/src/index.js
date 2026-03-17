@@ -19,7 +19,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    origin: "https://chatapp-mern-g39s.onrender.com",
     credentials: true,
   }),
 );
